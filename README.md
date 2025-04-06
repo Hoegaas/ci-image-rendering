@@ -5,7 +5,7 @@ Ideally.. any commit to a galleryze file or a defined image file will:
 
 Decisions down the line:
   GitHub Actions or Hooks?
-  Local or remote image rendering? Which API or web service could be relevant?
+  Server-side or remote image rendering? Which API or web service could be relevant?
   
   
   
