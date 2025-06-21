@@ -1,6 +1,5 @@
-version: "4.0"
-services:
-  web:
-    image: nginx
-    ports:
-      - "80:80"
+image_extensions:
+  - .svg
+  - .png
+  - .jpeg
+  - .jpg
