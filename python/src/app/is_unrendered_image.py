@@ -1,17 +1,15 @@
 import os
 import yaml
-#image_extensions = []
-yaml_filename = "galleryze.yaml"
-def read_image_extensions_from_test_yaml(path):
-    with open(path, 'r') as f:
-        config = yaml.safe_load(f)
-    return config.get('image_extensions', [])
-def find_galleryze_yaml():
+def find_galleryze_yaml(yaml_filename):
     for path in os.getcwd().rglob(yaml_filename):
-        if path is None:
-            print("e bi så ferbaina >:C")
-            return
+        if path is None or len(path) == 0 and path.parent is not os.getcwd():
+            return path
         else:
-            return read_image_extensions_from_test_yaml(path)
-image_extensions = find_galleryze_yaml()
-print(image_extensions)
+            return None
+def filter_supported_exts(any_image_ext, valid_image_exts):
+    return len([p for p in any_image_ext
+            if p in valid_image_exts])
+def read_image_extensions(parent_path, valid_image_exts):
+    with open(parent_path, 'r') as f:
+        return filter_supported_exts(yaml.safe_load(f).get(
+            'image_extensions', []),valid_image_exts)
